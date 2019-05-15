@@ -1,0 +1,36 @@
+OBD2 or OBDII
+
+As stated previously ODBII is a protocol that is used my car manufactures and professionals to obtain (DTC's) and log data. 
+OBD stands for On-Board Diagnostics and what it does is that it retreives Diagnostic Trouble Codes that the engine sees. 
+The log data, which as stated before retrieves info from the sensors that the car has, can be captured and inspected to see 
+engine performance.
+
+I want to focus mainly on Audi and Subaru for my foundation of understanding DTC's and Engine performance. Why? mainly because my 
+A4 is my daily driver and Subaru for my SO. 
+ 
+ Audi OBD Protocol 
+ ISO 9141 from 1997 -2001 (These are the B5 Chassis
+ 
+ ISO 9141 
+ &          B6 Audi Chassis (2002 -2004)
+ KWP2000
+
+ISO 9141
+KWP2000   2005-2007 (B7 Chassis)
+CAN
+
+CAN   2007- Onwards B8 and B9 Chassis
+
+Subaru 
+
+CAN       2006 Onwards
+
+ISO 9141  1996 -2002
+
+ISO 9141
+KWP2000   2003-04
+          
+KWP2000   2005
+
+Resource from 
+https://www.slideshare.net/TimMiller239/obdii-protocols-by-manufacturer
