@@ -1,0 +1,25 @@
+Concept: I want to write a program that can output data (log data) from my car to my phone/laptop and present it as graphs. 
+
+Alright lets get into the logistics of breaking this problem down. 
+
+The piece that we want to 'talk' to or rather get log information from is the Engine Control Unit(ECU).
+This piece of equipment is responsible for controlling things such as A/F (air to fuel ratio) ignition timing, and many other 
+functions of the car. If the car runs on sensors, MAF sensor, MAP, Coolant Temp, etc they talk to the ECU. 
+
+Lets take a look further into what an ECU is...
+
+//
+// We talk about ECU's after i research them further
+
+
+
+ODBII
+
+The way we obtain log information and by log info I mean we can read what our A/F rations are, what the MAF is reading, 
+what our coolant temp is and you get the gist. So we obtain this via whats called and ODB2 port. Mainly located under the steering wheel. 
+This port allows for the connection of a special cable that can attach to your laptop. Also new tech has rendered ODB2 scanners 
+to be wi-fi or bluetooth enabled to connect to your mobile device as well. 
+
+ODBII is a protocol that is a standard to all manufacturers but be aware. Different manufacturers use different protocols. 
+
+This will be updated further as the days and research move along. Sort of a collection of what I know and what I need to learn.
