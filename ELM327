@@ -1,0 +1,39 @@
+This is a programmed microcontroller.
+The original ELM327 is implemented on the PIC18F2480 microcontroller from Microchip Technology.
+
+ELM327 Functions
+
+Read diagnostic trouble codes, both generic and manufacturer-specific, and display their meaning (over 3000 generic code definitions in the database).
+Clear trouble codes and turn off the MIL ("Malfunction Indicator Light", more commonly known as the "Check Engine Light")
+Display current sensor data
+Engine RPM
+Calculated Load Value
+Coolant Temperature
+Fuel System Status
+Vehicle Speed
+Short Term Fuel Trim
+Long Term Fuel Trim
+Intake Manifold Pressure
+Timing Advance
+Intake Air Temperature
+Air Flow Rate
+Absolute Throttle Position
+Oxygen sensor voltages/associated short term fuel trims
+Fuel System status
+Fuel Pressure
+
+
+Protocols supported by ELM327
+The protocols supported by ELM327 are:[2]
+
+SAE J1850 PWM (41.6 kbit/s)
+SAE J1850 VPW (10.4 kbit/s)
+ISO 9141-2 (5 baud init, 10.4 kbit/s)
+ISO 14230-4 KWP (5 baud init, 10.4 kbit/s)
+ISO 14230-4 KWP (fast init, 10.4 kbit/s)
+ISO 15765-4 CAN (11 bit ID, 500 kbit/s)
+ISO 15765-4 CAN (29 bit ID, 500 kbit/s)
+ISO 15765-4 CAN (11 bit ID, 250 kbit/s)
+ISO 15765-4 CAN (29 bit ID, 250 kbit/s)
+SAE J1939 (250kbit/s)
+SAE J1939 (500kbit/s)
