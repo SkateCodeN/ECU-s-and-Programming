@@ -1,0 +1,11 @@
+The audi tuning industry is plagued with a lot of secrets after the CAN protocol came into effect for 2008 Audi cars.
+
+These cars whose ECUS are called ME9 are kept in secret and further research is required.
+
+The nefmoto community caters mainly to B5, B6 S4 and A4 models. Hence these cars are the most versitile and modded. 
+The ECU for this car is the ME7 or ME7.5.
+
+In order for one to tune a car one needs to read the memory of the ECU(This is EEPROM) ehich is in hex. One also needs an XDF file 
+or what they call a defenitions file that tells the tuning program where the locations for tuning are located. 
+
+Because Bosch is the manufacturer of these ECU's one has to check the Bosch naming convections for what location of memoru refers to. 
