@@ -1,0 +1,16 @@
+In have a cable that can have the D2XX Driver, this is an update for the FTDI cable devices that connect via the OBD port to the ECU.
+
+Straight from the FTDI website we have this statement:
+D2XX drivers allow direct access to the USB device through a DLL. 
+"Application software can access the USB device through a series of DLL function calls."
+
+They also graciously provide DLL functions call code:
+https://www.ftdichip.com/Support/Documents/ProgramGuides/D2XX_Programmer's_Guide(FT_000071).pdf
+*This is a plethora of function calls one can use. 
+They also have a section for C# programming. 
+https://www.ftdichip.com/Support/SoftwareExamples/CodeExamples/CSharp.htm
+
+If I recal the nefmoto application is also written in C#. 
+http://nefariousmotorsports.com/forum/index.php?topic=6537.0
+
+So now I have a library to read data from the ECU. Can I read specific block data?
