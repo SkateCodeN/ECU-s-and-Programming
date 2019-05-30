@@ -1,4 +1,4 @@
-# Programming-with-Python
+# ECU
 The Journey Begins and this will be a diary of sorts
 The date is 5-14-19
 
