@@ -1,0 +1,11 @@
+Here I hope to detail what a FTDI chip is and how we can use it to help me with this project. 
+
+I currently have an FTDI cable that was given to me to troubleshoot as to why a certain OBD2 program was not working with it. 
+VCDS is software developed by ROSS-TECH that reads and can code VAG (Volkswagen Auto Group) cars. ROSS-Tech designed their software 
+so only those who purchase genuine ross-tech cables can use their software to its fullest potential. 
+
+The FTDI chip, is a third party in the eyes of Ross-tech, and only the (lite) version of VCDS will work with it, still have to confirm 
+this and see what changes are apparent. If I can still log data, we are making headway.
+
+FTDI 
+
