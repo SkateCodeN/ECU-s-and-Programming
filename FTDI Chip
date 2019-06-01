@@ -8,4 +8,30 @@ The FTDI chip, is a third party in the eyes of Ross-tech, and only the (lite) ve
 this and see what changes are apparent. If I can still log data, we are making headway.
 
 FTDI 
+The FTDI chips implement the USB protocol stack. 
+The responsibility of this hardware is to tell your PC what it is 
+(using some identification information) such that your computer can load 
+the right driver for it, and also to manage the data transactions with the 
+PC there-on after - look up USB endpoints for a better explanation of these processes.
 
+Once those drivers are loaded, this would specify a command set that your PC can use
+to query the chip. This hardware takes care of one side of the equation (communication with your PC). 
+The other side of it would be some dedicated hardware to manage the UART protocol which includes logic,
+buffers and line drivers and the sorts. The command set mentioned earlier would be used to read from
+or write to the UART hardware. It should probably be mentioned that USB devices are polled by the PC, 
+so in instances where you are using code which is event based, your PC is actually doing some polling to
+determine that new data has arrived - this may be different than a native serial port, I wouldn't know.
+
+The above logic can be implemented either as a dedicated ASIC or by using a stripped down microcontroller 
+core which executes firmware on ROM. If it is indeed a microcontroller core, then I imagine the UART is 
+connected to it as a peripheral.
+From:
+https://electronics.stackexchange.com/questions/14344/how-does-an-ftdi-chip-work
+
+UART
+https://electronics.stackexchange.com/questions/14344/how-does-an-ftdi-chip-worUART 
+stands for Universal Asynchronous Receiver/Transmitter. It’s not a communication protocol 
+like SPI and I2C, but a physical circuit in a microcontroller, or a stand-alone IC.
+A UART’s main purpose is to transmit and receive serial data
+From:
+http://www.circuitbasics.com/basics-uart-communication/
