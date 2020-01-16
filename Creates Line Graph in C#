@@ -2,9 +2,32 @@
 https://social.msdn.microsoft.com/Forums/en-US/1b674218-2164-4a87-b768-1d17c3f08ec8/how-to-create-a-line-chart-in-c?forum=csharpgeneral
 // Props to the writer, it goes into detail on how to change line color
 // as well as x,y axis names and how to load int to the data points
+// 1-16-2020 Made into class 
+class CreateLineChart
+    {
+        private Ecu_Block_Group[] graphData;
+        private Chart logChart;
+        private double[] X;
+        public double[] x => X;
+        public double[] y => Y;
+        private double[] Y;
+        public CreateLineChart(Ecu_Block_Group[] data)
+        {
+            graphData = data;
+            // Load the double arrays asap
+            // X = RPM
+            Y = LoadDoubleArray(4, X, graphData[4].data.Count);
+            // Y = Lamda Control
+            X = LoadDoubleArray(2, Y, graphData[2].data.Count);
+        }
 
-// Create and align our graph called chart in C#.
-private void CreateGraph()
+        // Code was aquired here: 
+        // https://social.msdn.microsoft.com/Forums/en-US/1b674218-2164-4a87-b768-1d17c3f08ec8/how-to-create-a-line-chart-in-c?forum=csharpgeneral
+        // Props to the writer, it goes into detail on how to change line color
+        // as well as x,y axis names and how to load int to the data points
+
+        // Create and align our graph called chart in C#.
+        public Chart CreateGraph()
         {
             //  We set up the chart 
             logChart = new Chart();
@@ -12,11 +35,13 @@ private void CreateGraph()
             logChart.Width = 700;
             logChart.Height = 400;
             logChart.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Top;
-            this.Controls.Add(logChart);
+            // This has to be called in the Form 1 Method 
+            //this.Controls.Add(logChart);
             ECU_Block_Series();
+            return logChart;
         }
 
-private void ECU_Block_Series()
+        private void ECU_Block_Series()
         {
             // Chart Area   
             ChartArea cA = new ChartArea();
@@ -54,11 +79,19 @@ private void ECU_Block_Series()
             cA.CursorY.AutoScroll = true;
 
             // Axis
+
+            double yMin = Convert.ToDouble(GetMin("min", 4));
+            double yMax = Convert.ToDouble(GetMin("max", 4));
             // This here will be changed as well (min and max from the array/list
-            cA.AxisY.Minimum = -10d;//Y axis Minimum value
-            cA.AxisY.Title = @"AirFlow";
-            cA.AxisX.Minimum = 100d; //X axis Minimum value
-            cA.AxisX.Maximum = 5600d;
+            cA.AxisY.Minimum = yMin;//Y axis Minimum value
+            cA.AxisX.Maximum = yMax;
+            cA.AxisY.Interval = 300;
+            cA.AxisY.Title = @graphData[4].name;
+            // X Axis min
+            double xMin = Convert.ToDouble(GetMin("min", 2));
+            cA.AxisX.Minimum = xMin;//X axis Minimum value
+            double xMax = Convert.ToDouble(GetMin("max", 2));
+            cA.AxisX.Maximum = xMax;
 
             cA.AxisX.IsLabelAutoFit = true;
             cA.AxisX.LabelAutoFitMinFontSize = 5;
@@ -66,12 +99,19 @@ private void ECU_Block_Series()
             cA.AxisX.LabelStyle.IsEndLabelVisible = true;//show the last label
 
             //  Interval Can change as well
-            cA.AxisX.Interval = 300;
+            cA.AxisX.Interval = 5;
 
             cA.AxisX.IntervalAutoMode = IntervalAutoMode.FixedCount;
             cA.AxisX.IntervalType = DateTimeIntervalType.NotSet;
             //  We Measure RPM against all of it
-            cA.AxisX.Title = @"RPM";
+            // X axis should always be rpm
+            //
+            //cA.AxisX.Title = @"RPM";
+            // Change to be dynamic 
+            //
+            cA.AxisX.Title = @graphData[2].name;
+            //
+            // 
             cA.AxisX.TextOrientation = TextOrientation.Auto;
             cA.AxisX.LineWidth = 2;
             cA.AxisX.LineColor = Color.DarkOrchid;
@@ -92,7 +132,7 @@ private void ECU_Block_Series()
             series1.Color = Color.Green;
             series1.XValueType = ChartValueType.Int32;//x axis type
             series1.YValueType = ChartValueType.Int32;//y axis type
-            
+
 
             //Marker
             series1.MarkerStyle = MarkerStyle.Star4;
@@ -119,14 +159,58 @@ private void ECU_Block_Series()
 
             // Here is where the data will go
             // This will be changed
-            float[] values = { 0, 70, 90, 20, 70, 220, 30, 60, 30, 81, 10, 39 };
 
+            float[] values = { 0, 70, 90, 20, 70, 220, 30, 60, 30, 81, 10, 39 };
+            float[] test = { 1000, 2000, 3000, 4000, 500, 600, 700, 800, 900, 1000, 2000, 1000 };
+            double damn = GetMin("x", 4);
+            double damn2 = GetMin("y", 2);
+            double[] xValues = X;
+            double[] yValues = Y;
             // This will change as well for the sake of formatting as well 
             // These are the plotted data points
-            int x = 100;
-            foreach (float v in values)
+            //int x = 100;
+            for (int i = 0; i < X.Length; i++)
             {
-                series1.Points.AddXY(x, v);
-                x += 100;
+
+                series1.Points.AddXY(xValues[i], yValues[i]);
+
+
+                //x += 100;
             }
         }
+
+        public double GetMin(string minOrMax, int index)
+        {
+
+            double min = 0;
+            double[] temp = new double[graphData[index].data.Count];
+            
+            for (int i = 0; i < graphData[index].data.Count; i++)
+            {
+                temp[i] = Convert.ToDouble(graphData[index].data[i]);
+                
+            }
+            if (minOrMax == "min")
+            {
+
+                min = temp.Min();
+                return min;
+            }
+            else if (minOrMax == "max")
+            {
+                return min = temp.Max();
+            }
+
+            return 0.0;
+        }
+
+        private double[] LoadDoubleArray(int index, double[] num, int length)
+        {
+            num = new double[length];
+            for (int i = 0; i < length; i++)
+            {
+                num[i] = Convert.ToDouble(graphData[index].data[i]);
+            }
+            return num;
+        }
+    }
