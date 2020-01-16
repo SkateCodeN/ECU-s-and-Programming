@@ -1,0 +1,132 @@
+// Code was aquired here: 
+https://social.msdn.microsoft.com/Forums/en-US/1b674218-2164-4a87-b768-1d17c3f08ec8/how-to-create-a-line-chart-in-c?forum=csharpgeneral
+// Props to the writer, it goes into detail on how to change line color
+// as well as x,y axis names and how to load int to the data points
+
+// Create and align our graph called chart in C#.
+private void CreateGraph()
+        {
+            //  We set up the chart 
+            logChart = new Chart();
+            logChart.Location = new Point(10, 10);
+            logChart.Width = 700;
+            logChart.Height = 400;
+            logChart.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Top;
+            this.Controls.Add(logChart);
+            ECU_Block_Series();
+        }
+
+private void ECU_Block_Series()
+        {
+            // Chart Area   
+            ChartArea cA = new ChartArea();
+            // This is the name of the Chart area...title?
+            cA.Name = "Test";
+            logChart.ChartAreas.Add(cA);
+            cA.BackColor = Color.Azure;
+            cA.BackGradientStyle = GradientStyle.HorizontalCenter;
+            cA.BackHatchStyle = ChartHatchStyle.LargeGrid;
+            cA.BorderDashStyle = ChartDashStyle.Solid;
+            cA.BorderWidth = 1;
+            cA.BorderColor = Color.Black;
+            cA.ShadowColor = Color.Purple;
+            cA.ShadowOffset = 0;
+            logChart.ChartAreas[0].Axes[0].MajorGrid.Enabled = false;//x axis
+            logChart.ChartAreas[0].Axes[1].MajorGrid.Enabled = false;//y axis
+
+            //Cursor：only apply the top area
+            cA.CursorX.IsUserEnabled = true;
+            cA.CursorX.AxisType = AxisType.Primary;//act on primary x axis
+            cA.CursorX.Interval = 1;
+            cA.CursorX.LineWidth = 1;
+            cA.CursorX.LineDashStyle = ChartDashStyle.Dash;
+            cA.CursorX.IsUserSelectionEnabled = true;
+            cA.CursorX.SelectionColor = Color.Yellow;
+            cA.CursorX.AutoScroll = true;
+
+            cA.CursorY.IsUserEnabled = true;
+            cA.CursorY.AxisType = AxisType.Primary;//act on primary y axis
+            cA.CursorY.Interval = 1;
+            cA.CursorY.LineWidth = 1;
+            cA.CursorY.LineDashStyle = ChartDashStyle.Dash;
+            cA.CursorY.IsUserSelectionEnabled = true;
+            cA.CursorY.SelectionColor = Color.Yellow;
+            cA.CursorY.AutoScroll = true;
+
+            // Axis
+            // This here will be changed as well (min and max from the array/list
+            cA.AxisY.Minimum = -10d;//Y axis Minimum value
+            cA.AxisY.Title = @"AirFlow";
+            cA.AxisX.Minimum = 100d; //X axis Minimum value
+            cA.AxisX.Maximum = 5600d;
+
+            cA.AxisX.IsLabelAutoFit = true;
+            cA.AxisX.LabelAutoFitMinFontSize = 5;
+            cA.AxisX.LabelStyle.Angle = -20;
+            cA.AxisX.LabelStyle.IsEndLabelVisible = true;//show the last label
+
+            //  Interval Can change as well
+            cA.AxisX.Interval = 300;
+
+            cA.AxisX.IntervalAutoMode = IntervalAutoMode.FixedCount;
+            cA.AxisX.IntervalType = DateTimeIntervalType.NotSet;
+            //  We Measure RPM against all of it
+            cA.AxisX.Title = @"RPM";
+            cA.AxisX.TextOrientation = TextOrientation.Auto;
+            cA.AxisX.LineWidth = 2;
+            cA.AxisX.LineColor = Color.DarkOrchid;
+            cA.AxisX.Enabled = AxisEnabled.True;
+            cA.AxisX.ScaleView.MinSizeType = DateTimeIntervalType.Months;
+            cA.AxisX.ScrollBar = new AxisScrollBar();
+
+
+            //Series
+            Series series1 = new Series();
+            series1.ChartArea = "Test";
+            logChart.Series.Add(series1);
+
+            //Series style
+            series1.Name = @"series：Test";
+            series1.ChartType = SeriesChartType.Line;  // type
+            series1.BorderWidth = 2;
+            series1.Color = Color.Green;
+            series1.XValueType = ChartValueType.Int32;//x axis type
+            series1.YValueType = ChartValueType.Int32;//y axis type
+            
+
+            //Marker
+            series1.MarkerStyle = MarkerStyle.Star4;
+            series1.MarkerSize = 10;
+            series1.MarkerStep = 1;
+            series1.MarkerColor = Color.Red;
+            series1.ToolTip = @"ToolTip";
+
+            //Label
+            series1.IsValueShownAsLabel = true;
+            series1.SmartLabelStyle.Enabled = false;
+            series1.SmartLabelStyle.AllowOutsidePlotArea = LabelOutsidePlotAreaStyle.Yes;
+            series1.LabelForeColor = Color.Gray;
+            series1.LabelToolTip = @"LabelToolTip";
+
+            //Empty Point Style 
+            DataPointCustomProperties p = new DataPointCustomProperties();
+            p.Color = Color.Green;
+            series1.EmptyPointStyle = p;
+
+            //Legend
+            series1.LegendText = "LegendText：Test";
+            series1.LegendToolTip = @"LegendToolTip";
+
+            // Here is where the data will go
+            // This will be changed
+            float[] values = { 0, 70, 90, 20, 70, 220, 30, 60, 30, 81, 10, 39 };
+
+            // This will change as well for the sake of formatting as well 
+            // These are the plotted data points
+            int x = 100;
+            foreach (float v in values)
+            {
+                series1.Points.AddXY(x, v);
+                x += 100;
+            }
+        }
