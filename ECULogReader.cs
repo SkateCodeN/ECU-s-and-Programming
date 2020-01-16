@@ -1,3 +1,9 @@
+class Ecu_Block_Group
+    {
+        public string name;
+        public List<string> data;
+    }
+
 class ECULogReader
     {
         //**********Private Globals for use in this Class
