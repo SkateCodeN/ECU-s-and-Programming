@@ -1,0 +1,30 @@
+			        Form
+				       /\
+		   Main Class w helper Functions
+			        /		\
+		Read Class		Write Class
+		
+Read Class: Reads File
+		Reads Log and Header data
+	ex of Header Data LINE: MARKER,VEHICLE SPEED,LAMDA-BANK 1, BOOST PRESSURE,...
+	 	LOG DATA LINE : ,800,3.2,5.2,.....
+	UNITS OF MEASURE LINE : ,rpm,%,mbar,....
+	READS DATE OF LOGS
+	READS TYPE OF VEHICLE
+	MAIN CLASS USES THESE OUTPUTS TO BE USED BY THE FORM 
+
+WRITE CLASS: Makes sence of the data
+		We want to clean up each Header, each header is its own class with its Log Data
+		Each Header has also a Unit of measure 
+		Each Header Class also has a time Parameter associated...the time the ECU captured that specific log(block) parameter
+		WE THEN USE THIS DATA STRUCTURE TO CREATE GRAPH ... RPM VS BLAH GRAPH	
+								    TORQUE AND HP GRAPH
+		WHAT ELSE DO WE WANT THE FORM TO DISPLAY?
+		Graph, Parameters I can graph 
+		Tell me Max values? ex of maf at what RPM Range...Ditto for boost 
+
+
+NOTES: UNIT TESTING AND INTEGRATION TESTING
+SAVE TO DATABASE????
+HAVE A WEBSITE FOR MY CAR?
+				
