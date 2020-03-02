@@ -8,3 +8,5 @@ Currently I am employed as a dish washer and my ambition is to learn and to keep
 
 Side note: A passion of mine has been writing, which is why I plan to write this passage of learning in a diary style. 
 
+3/1/2020: 
+For the sake of making things look pretty I have created a website and I keep my diary in blog form there. I will talk more about this project in the future.
