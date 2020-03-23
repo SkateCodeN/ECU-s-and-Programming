@@ -10,3 +10,7 @@ Side note: A passion of mine has been writing, which is why I plan to write this
 
 3/1/2020: 
 For the sake of making things look pretty I have created a website and I keep my diary in blog form there. I will talk more about this project in the future.
+
+TL;DR
+VCDS logs ECU data to a .CSV file. This program takes the file and is responsible for reading line by line all the log info
+and placing it in its corresponding list. Then, it creates graph to better represent data. 
